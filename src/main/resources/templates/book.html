@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>books</title>
+</head>
+<body>
+    <div>
+        <p th:utext="${book.name}" style="margin: 30px;">Name</p>
+        <p>Authors</p>
+    </div>
+    <div>
+        <section th:each="comment : ${book.comments}" style="margin: 30px; border: solid; background: #f0f0f0; width: 250px">
+            <p th:utext="${comment.text}" style="margin: 15px"></p>
+            <p th:utext="${comment.user.login}" style="margin: 15px"></p>
+        </section>
+    </div>
+</body>
+</html>

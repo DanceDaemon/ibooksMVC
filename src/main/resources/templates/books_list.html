@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>books</title>
+</head>
+<body>
+  <div>
+    <section th:each="book : ${books}" style="margin: 30px; border: solid; background: #f0f0f0; width: 250px">
+      <a th:href="@{http://localhost:8080/books(id=${book.id})}"><span th:utext="${book.name}" style="display: block; margin: 15px;">Name</span></a>
+      <span style="display: block; margin: 15px;">Authors list</span>
+      <span style="display: block; margin: 15px;">Count of comments: <span th:utext="${book.comments.size()}"></span></span>
+    </section>
+  </div>
+</body>
+</html>
