@@ -6,8 +6,43 @@
 </head>
 <body>
     <div>
-        <form th:action="@{/sign_up}" th:object="${user}">
+        <form th:action="@{http://localhost:8080/sign_up}" th:object="${userForm}" method="post">
+            <div>
+                <label>
+                    login
+                </label>
+                <input type="text" th:field="*{login}">
+            </div>
 
+            <div>
+                <label>
+                    password
+                </label>
+                <input type="text" th:field="*{password}">
+            </div>
+
+            <div>
+                <label>
+                    email
+                </label>
+                <input type="email" th:field="*{email}">
+            </div>
+
+            <div>
+                <label>
+                    firstname
+                </label>
+                <input type="text" th:field="*{firstname}">
+            </div>
+
+            <div>
+                <label>
+                    lastname
+                </label>
+                <input type="text" th:field="*{lastname}">
+            </div>
+
+            <input type="submit" value="sign up">
         </form>
     </div>
 </body>
