@@ -68,4 +68,8 @@ public class Author {
         this.lastname = lastname;
     }
 
+    @Override
+    public String toString() {
+        return this.getFirstname() + this.getMiddlename() + this.getLastname();
+    }
 }
