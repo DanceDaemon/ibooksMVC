@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class UserController {
@@ -22,17 +23,10 @@ public class UserController {
         return "users";
     }
 
-    @GetMapping("/sign_up")
-    public String signUp(Model model) {
-        model.addAttribute("userForm", new User());
+    @RequestMapping("/login")
+    public String login(Model model) {
 
-        return "sign_up";
-    }
-
-    @PostMapping("/sign_up")
-    public String addUser(@ModelAttribute("userForm") User userForm, Model model) {
-        userService.createUser(userForm);
-        return "redirect:/";
+        return "login";
     }
 
 }

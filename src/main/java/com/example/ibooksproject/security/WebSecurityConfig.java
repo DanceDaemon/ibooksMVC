@@ -24,22 +24,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .csrf()
-                    .disable()
-                .authorizeRequests()
-                    .antMatchers("/sign_up").not().fullyAuthenticated()
-                    .antMatchers("/", "/resources/**").permitAll()
-                .and()
-                    .formLogin()
-                    .loginPage("/sign_in")
-                    .defaultSuccessUrl("/books_list")
-                    .permitAll()
-                .and()
-                    .logout()
-                    .permitAll()
-                    .logoutSuccessUrl("/books_list")
-                .and();
+        http.csrf().disable();
+
+        /*http.authorizeRequests().and().formLogin()
+                .loginProcessingUrl("/j_spring_security_check")
+                .loginPage("/login")
+                .defaultSuccessUrl("/")
+                .usernameParameter("login")
+                .passwordParameter("password");*/
     }
 
     @Autowired
