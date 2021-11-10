@@ -4,4 +4,5 @@ import java.util.List;
 
 public interface AuthorDAO {
     public List<Author> findAll();
+    public Author findById(int id);
 }

@@ -8,4 +8,5 @@ import java.util.List;
 @Service
 public interface AuthorService {
     public List<Author> findAll();
+    public Author findById(int id);
 }

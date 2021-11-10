@@ -16,4 +16,9 @@ public class AuthorDAOImpl implements AuthorDAO {
     public List<Author> findAll() {
         return authorRepository.findAll();
     }
+
+    @Override
+    public Author findById(int id) {
+        return authorRepository.getById(id);
+    }
 }
