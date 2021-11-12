@@ -1,5 +1,7 @@
 package com.example.ibooksproject.models.user;
 
+import org.springframework.security.core.userdetails.UserDetails;
+
 import java.util.List;
 
 public interface UserDAO {
@@ -9,5 +11,4 @@ public interface UserDAO {
     public boolean createUser(User user);
 
     public User findByLogin(String login);
-
 }

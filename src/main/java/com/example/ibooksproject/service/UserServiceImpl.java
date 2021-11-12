@@ -1,5 +1,6 @@
 package com.example.ibooksproject.service;
 
+import com.example.ibooksproject.models.user.CustomUserDetails;
 import com.example.ibooksproject.models.user.User;
 import com.example.ibooksproject.models.user.UserDAO;
 import com.example.ibooksproject.repository.UserRepository;
@@ -8,9 +9,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -18,26 +21,19 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDAO userDAO;
 
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
-
     public List<User> findAll() {
         return userDAO.findAll();
     }
 
     @Override
     public boolean createUser(User user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         return userDAO.createUser(user);
     }
 
     @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        return null;
-    }
+    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
+        User user = userDAO.findByLogin(login);
 
-    @Override
-    public User findByLogin(String login) {
-        return userDAO.findByLogin(login);
+        return new CustomUserDetails(user);
     }
 }

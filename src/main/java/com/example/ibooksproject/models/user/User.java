@@ -1,6 +1,7 @@
 package com.example.ibooksproject.models.user;
 
 import com.example.ibooksproject.models.comments.BookComments;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -97,4 +98,6 @@ public class User {
     public void setComments(Set<BookComments> comments) {
         this.comments = comments;
     }
+
+
 }

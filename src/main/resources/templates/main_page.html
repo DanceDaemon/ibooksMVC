@@ -1,11 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Main page</title>
 </head>
 <body>
-    <h3>This is a main page</h3>
-    <p></p>
+    <span th:utext="${currentUser}"></span>
+
+    <a th:href="@{/books}">
+        Список книг
+    </a>
+
+    <a th:href="@{/authors}">
+        Спиок авторов
+    </a>
+
 </body>
 </html>
