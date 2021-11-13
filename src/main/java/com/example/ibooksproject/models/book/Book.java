@@ -1,5 +1,6 @@
 package com.example.ibooksproject.models.book;
 
+import com.example.ibooksproject.models.genres.Genre;
 import com.example.ibooksproject.models.authors.Author;
 import com.example.ibooksproject.models.comments.BookComments;
 
@@ -17,8 +18,9 @@ public class Book {
     private String name;
     private String annotation;
 
-    /*private Genre genre;*/
-    private int id_genre;
+    @ManyToOne
+    //@JoinTable(name = "genres")
+    private Genre genre;
 
     @OneToMany(mappedBy = "book")
     private Set<BookComments> comments = new HashSet<>();
@@ -68,4 +70,11 @@ public class Book {
         this.comments = comments;
     }
 
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
+    }
 }

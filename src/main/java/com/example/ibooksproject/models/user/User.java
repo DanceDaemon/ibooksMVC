@@ -99,5 +99,8 @@ public class User {
         this.comments = comments;
     }
 
+    public String getFullName() {
+        return this.firstname + " " + this.lastname;
+    }
 
 }

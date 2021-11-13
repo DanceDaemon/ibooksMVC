@@ -36,4 +36,9 @@ public class UserServiceImpl implements UserService {
 
         return new CustomUserDetails(user);
     }
+
+    @Override
+    public User getUserByLogin(String login) {
+        return userDAO.findByLogin(login);
+    }
 }

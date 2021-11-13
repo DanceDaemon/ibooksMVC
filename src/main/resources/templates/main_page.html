@@ -5,15 +5,24 @@
     <title>Main page</title>
 </head>
 <body>
-    <span th:utext="${currentUser}"></span>
 
-    <a th:href="@{/books}">
-        Список книг
-    </a>
+    <div th:if="${currentUser != null}">
+        <p>Full name: <span th:utext="${currentUser.getFullName()}">Users full name</span></p>
+        <p>Login: <span th:utext="${currentUser.login}">Users login</span></p>
+    </div>
 
-    <a th:href="@{/authors}">
-        Спиок авторов
-    </a>
+    <div>
+        <a th:href="@{/books}">
+            Список книг
+        </a>
+    </div>
+
+    <div>
+        <a th:href="@{/authors}">
+            Спиок авторов
+        </a>
+    </div>
+
 
 </body>
 </html>

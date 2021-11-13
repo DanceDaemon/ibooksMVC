@@ -9,4 +9,5 @@ import java.util.List;
 public interface UserService extends UserDetailsService {
     public List<User> findAll();
     public boolean createUser(User user);
+    public User getUserByLogin(String login);
 }
