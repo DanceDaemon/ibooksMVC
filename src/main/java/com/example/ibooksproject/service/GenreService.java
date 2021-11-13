@@ -8,4 +8,5 @@ import java.util.List;
 @Service
 public interface GenreService {
     public List<Genre> findAll();
+    public Genre findById(int id);
 }

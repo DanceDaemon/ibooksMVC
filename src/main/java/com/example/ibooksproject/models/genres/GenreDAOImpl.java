@@ -15,4 +15,9 @@ public class GenreDAOImpl implements GenreDAO {
     public List<Genre> findAll() {
         return genreRepository.findAll();
     }
+
+    @Override
+    public Genre findById(int id) {
+        return genreRepository.getById(id);
+    }
 }

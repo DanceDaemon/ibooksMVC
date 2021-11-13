@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Main page</title>
+</head>
+<body>
+
+<div>
+    <section th:each="book : ${genre.books}">
+        <a th:href="@{http://localhost:8080/books(id=${book.id})}" th:utext="${book.name}"></a>
+    </section>
+</div>
+
+</body>
+</html>

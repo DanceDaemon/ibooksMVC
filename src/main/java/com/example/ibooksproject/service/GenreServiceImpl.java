@@ -17,4 +17,9 @@ public class GenreServiceImpl implements GenreService {
     public List<Genre> findAll() {
         return genreDAO.findAll();
     }
+
+    @Override
+    public Genre findById(int id) {
+        return genreDAO.findById(id);
+    }
 }

@@ -7,4 +7,5 @@ import java.util.List;
 @Component
 public interface GenreDAO {
     public List<Genre> findAll();
+    public Genre findById(int id);
 }

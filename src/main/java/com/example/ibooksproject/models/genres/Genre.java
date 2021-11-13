@@ -12,8 +12,8 @@ public class Genre {
     private int id;
     private String name;
 
-    //@OneToMany(mappedBy = "genre")
-    @OneToMany
+    @OneToMany(mappedBy = "genre")
+    //@OneToMany
     private Set<Book> books;
 
     public int getId() {
@@ -30,5 +30,13 @@ public class Genre {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Set<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(Set<Book> books) {
+        this.books = books;
     }
 }
