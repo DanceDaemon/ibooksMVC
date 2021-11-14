@@ -1,4 +1,4 @@
-package com.example.ibooksproject.service;
+package com.example.ibooksproject.service.genre;
 
 import com.example.ibooksproject.models.genres.Genre;
 import com.example.ibooksproject.models.genres.GenreDAO;

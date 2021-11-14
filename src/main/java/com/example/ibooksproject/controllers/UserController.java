@@ -1,16 +1,12 @@
 package com.example.ibooksproject.controllers;
 
 import com.example.ibooksproject.models.user.User;
-import com.example.ibooksproject.service.UserService;
+import com.example.ibooksproject.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class UserController {
@@ -41,6 +37,14 @@ public class UserController {
         userService.createUser(user);
 
         return "redirect:login";
+    }
+
+    @GetMapping("/user")
+    public String userProfile(Model model, @RequestParam(value = "id") int id) {
+        model.addAttribute("user", userService.getUserById(id));
+        System.out.println(userService.getUserById(id).getComments());
+
+        return "user";
     }
 
 }

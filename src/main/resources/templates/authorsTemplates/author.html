@@ -7,24 +7,28 @@
 
 <body>
     <div>
-        <p th:utext="${author}"></p>
+        <p th:utext="${author}">Author's name</p>
     </div>
 
-    <section th:each="book : ${author.books}" style="margin: 30px; border: solid; background: #f0f0f0; width: 250px">
-        <ul>
-            <li>
+    <div>
+        <p th:utext="${author.inform}">Author's inform block</p>
+    </div>
+
+    <div th:each="book : ${author.books}" style="margin: 30px; border: solid; background: #f0f0f0; width: 250px; display: inline-block">
+        <div style="margin: 15px">
+            <div>
                 <a th:href="@{http://localhost:8080/books(id=${book.id})}"><span th:utext="${book.name}"></span></a>
-            </li>
+            </div>
 
-            <li>
+            <div>
                 <span th:utext="${book.annotation}"></span>
-            </li>
+            </div>
 
-            <li>
+            <div>
                 <span>Количество комментариев: <span th:utext="${book.comments.size()}"></span></span>
-            </li>
-        </ul>
-    </section>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>

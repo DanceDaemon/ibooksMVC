@@ -1,4 +1,4 @@
-package com.example.ibooksproject.service;
+package com.example.ibooksproject.service.user;
 
 import com.example.ibooksproject.models.user.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,4 +10,5 @@ public interface UserService extends UserDetailsService {
     public List<User> findAll();
     public boolean createUser(User user);
     public User getUserByLogin(String login);
+    public User getUserById(int id);
 }

@@ -11,4 +11,6 @@ public interface UserDAO {
     public boolean createUser(User user);
 
     public User findByLogin(String login);
+
+    public User findById(int id);
 }

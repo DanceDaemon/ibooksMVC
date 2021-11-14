@@ -24,7 +24,7 @@ public class User {
     private String city;
     private Date birth_day;
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private Set<BookComments> comments = new HashSet<>();
 
     public int getId() {

@@ -1,15 +1,13 @@
 package com.example.ibooksproject.controllers;
 
 import com.example.ibooksproject.models.user.User;
-import com.example.ibooksproject.service.UserService;
+import com.example.ibooksproject.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import java.security.Principal;
 
 @Controller
 public class MainController {

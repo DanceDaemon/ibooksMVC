@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Main page</title>
+</head>
+<body>
+
+    <div>
+        <div th:utext="${user.fullName}"></div>
+        <div th:if="${user.city != null}" th:utext="${user.city}"></div>
+    </div>
+
+    <div>
+        <div th:each="comment : ${user.comments}" style="display: block; border: solid; background: #f2f2f2; margin: 20px; width: 300px;">
+            <div style="margin: 15px">
+                <div th:utext="${comment.book.name}"></div>
+                <div th:utext="${comment.text}"></div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

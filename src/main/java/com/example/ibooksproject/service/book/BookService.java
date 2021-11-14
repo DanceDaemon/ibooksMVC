@@ -1,4 +1,4 @@
-package com.example.ibooksproject.service;
+package com.example.ibooksproject.service.book;
 
 import com.example.ibooksproject.models.book.Book;
 import org.springframework.stereotype.Service;

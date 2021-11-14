@@ -30,4 +30,8 @@ public class UserDAOImpl implements UserDAO {
         return userRepository.findByLogin(login);
     }
 
+    @Override
+    public User findById(int id) {
+        return userRepository.getById(id);
+    }
 }

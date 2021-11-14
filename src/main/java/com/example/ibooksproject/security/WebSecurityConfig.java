@@ -1,8 +1,6 @@
 package com.example.ibooksproject.security;
 
-import com.example.ibooksproject.models.user.CustomUserDetails;
-import com.example.ibooksproject.service.UserService;
-import com.example.ibooksproject.service.UserServiceImpl;
+import com.example.ibooksproject.service.user.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
