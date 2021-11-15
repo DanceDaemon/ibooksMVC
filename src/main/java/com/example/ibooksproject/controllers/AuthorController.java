@@ -20,7 +20,7 @@ public class AuthorController {
         return "authorsTemplates/authors";
     }
 
-    @GetMapping(value = "/authors", params = {"id"})
+    @GetMapping(value = "/author", params = {"id"})
     public String getAuthorPage(@RequestParam(value = "id") int id, Model model) {
         model.addAttribute("author", authorService.findById(id));
         return "authorsTemplates/author";

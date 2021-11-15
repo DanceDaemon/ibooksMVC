@@ -21,7 +21,6 @@ public class MainController {
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
             User user = userService.getUserByLogin(userDetails.getUsername());
             model.addAttribute("currentUser", user);
-            System.out.println((UserDetails) authentication.getPrincipal());
         }
 
         return "main_page";

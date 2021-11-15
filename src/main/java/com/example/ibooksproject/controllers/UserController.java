@@ -30,10 +30,8 @@ public class UserController {
     @PostMapping("/register")
     public String processRegister(User user) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        System.out.println(user.getPassword());
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
-        System.out.println(user.getPassword());
         userService.createUser(user);
 
         return "redirect:login";
@@ -42,7 +40,6 @@ public class UserController {
     @GetMapping("/user")
     public String userProfile(Model model, @RequestParam(value = "id") int id) {
         model.addAttribute("user", userService.getUserById(id));
-        System.out.println(userService.getUserById(id).getComments());
 
         return "user";
     }

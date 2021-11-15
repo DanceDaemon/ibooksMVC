@@ -9,6 +9,15 @@
         <p th:utext="${book.name}" style="margin: 30px;">Name</p>
         <p>Authors</p>
     </div>
+    <div th:if="${currentUser != null}">
+        <form method="post" th:object="${comment}" th:action="@{/addcomment}">
+            <input type="hidden" th:value="${currentUser.id}" name="userId"/>
+            <input type="hidden" th:value="${book.id}" name="bookId"/>
+            <p>Комментарий<Br>
+                <textarea name="comment" cols="40" rows="3" th:field="*{text}"></textarea></p>
+            <p><input type="submit" value="Отправить">
+        </form>
+    </div>
     <div>
         <section th:each="comment : ${book.comments}" style="margin: 30px; border: solid; background: #f0f0f0; width: 250px">
             <p th:utext="${comment.text}" style="margin: 15px"></p>
