@@ -11,6 +11,21 @@
         <p>Login: <span th:utext="${currentUser.login}">Users login</span></p>
     </div>
 
+    <div th:if="${currentUser == null}">
+        <div>
+            <a th:href="@{/login}">
+                Log in
+            </a>
+        </div>
+
+        <div>
+            <a th:href="@{/register}">
+                Sign up
+            </a>
+        </div>
+
+    </div>
+
     <div>
         <a th:href="@{/books}">
             Список книг

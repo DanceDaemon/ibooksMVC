@@ -8,7 +8,7 @@
 
 <div>
     <section th:each="book : ${genre.books}">
-        <a th:href="@{http://localhost:8080/books(id=${book.id})}" th:utext="${book.name}"></a>
+        <a th:href="@{http://localhost:8080/book(id=${book.id})}" th:utext="${book.name}"></a>
     </section>
 </div>
 
