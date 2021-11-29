@@ -3,6 +3,7 @@ package com.example.ibooksproject.models.book;
 import com.example.ibooksproject.models.genres.Genre;
 import com.example.ibooksproject.models.authors.Author;
 import com.example.ibooksproject.models.comments.BookComments;
+import com.example.ibooksproject.models.user.User;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -28,7 +29,36 @@ public class Book {
     @ManyToMany(mappedBy = "books", fetch = FetchType.LAZY)
     private Set<Author> authors = new HashSet<>();
 
+    @Column(name = "average_rating")
+    private int averageRating;
 
+    @Column(name = "count_likes")
+    private int countLikes;
+
+    @Column(name = "count_dislikes")
+    private int countDislikes;
+
+    @ManyToMany
+    @JoinTable(name = "books_likes",
+            joinColumns = {
+                    @JoinColumn(name = "book_id", referencedColumnName = "id")
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(name = "user_id", referencedColumnName = "id")
+            }
+    )
+    private Set<User> likes;
+
+    @ManyToMany
+    @JoinTable(name = "books_dislikes",
+            joinColumns = {
+                    @JoinColumn(name = "book_id", referencedColumnName = "id")
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(name = "user_id", referencedColumnName = "id")
+            }
+    )
+    private Set<User> dislikes;
 
     public int getId() {
         return id;
@@ -76,5 +106,45 @@ public class Book {
 
     public void setGenre(Genre genre) {
         this.genre = genre;
+    }
+
+    public int getAverageRating() {
+        return averageRating;
+    }
+
+    public void setAverageRating(int averageRating) {
+        this.averageRating = averageRating;
+    }
+
+    public int getCountLikes() {
+        return countLikes;
+    }
+
+    public void setCountLikes(int countLikes) {
+        this.countLikes = countLikes;
+    }
+
+    public int getCountDislikes() {
+        return countDislikes;
+    }
+
+    public void setCountDislikes(int countDislikes) {
+        this.countDislikes = countDislikes;
+    }
+
+    public Set<User> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(Set<User> likes) {
+        this.likes = likes;
+    }
+
+    public Set<User> getDislikes() {
+        return dislikes;
+    }
+
+    public void setDislikes(Set<User> dislikes) {
+        this.dislikes = dislikes;
     }
 }

@@ -7,6 +7,7 @@
 <body>
     <div>
         <p th:utext="${book.name}" style="margin: 30px;">Name</p>
+        <p th:utext="${book.averageRating}" style="margin: 30px;">Rating</p>
         <p>Authors</p>
     </div>
     <div th:if="${currentUser != null}">
@@ -19,10 +20,42 @@
         </form>
     </div>
     <div>
-        <section th:each="comment : ${book.comments}" style="margin: 30px; border: solid; background: #f0f0f0; width: 250px">
+        <div th:each="comment : ${book.comments}" style="margin: 30px; border: solid; background: #f0f0f0; width: 250px">
             <p th:utext="${comment.text}" style="margin: 15px"></p>
             <p th:utext="${comment.user.login}" style="margin: 15px"></p>
-        </section>
+
+        </div>
+
+        <div>
+            <p>Лайки:</p>
+            <p th:utext="${book.countLikes}"></p>
+        </div>
+
+        <div th:if="${currentUser != null}">
+            <p>Лайк или дизлайк</p>
+            <div th:if="${currentUser.likes.contains(book)}">
+                <input type="button" value = "Unlike" onclick="like()">
+            </div>
+            <div th:unless="${currentUser.likes.contains(book)}">
+                <input type="button" value = "Like" onclick="like()">
+            </div>
+
+            <input type="button" value = "Dislike" onclick="dislike()">
+        </div>
+
+
     </div>
+
+    <script>
+        async function like() {
+            const url = new URLSearchParams(window.location.search);
+            window.location.replace("http://localhost:8080/like/book?id=" + url.get('id').toString());
+        }
+
+        async function dislike() {
+            const url = new URLSearchParams(window.location.search);
+            window.location.replace("http://localhost:8080/dislike/book?id=" + url.get('id').toString());
+        }
+    </script>
 </body>
 </html>

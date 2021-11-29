@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 public class MainController {
@@ -16,13 +17,22 @@ public class MainController {
     private UserService userService;
 
     @GetMapping("/")
-    public String mainPage(Model model, Authentication authentication) {
+    public RedirectView mainPage(Model model, Authentication authentication) {
         if (authentication != null) {
+
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
             User user = userService.getUserByLogin(userDetails.getUsername());
-            model.addAttribute("currentUser", user);
+
+            RedirectView redirectView = new RedirectView();
+            redirectView.setUrl("http://localhost:8080/user?id=" + user.getId());
+            return redirectView;
         }
 
+        return new RedirectView("http://localhost:8080/main_page");
+    }
+
+    @GetMapping("main_page")
+    public String mainPage() {
         return "main_page";
     }
 

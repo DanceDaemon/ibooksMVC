@@ -9,4 +9,6 @@ import java.util.List;
 public interface BookService {
     public List<Book> findAll();
     public Book findById(int id);
+    public boolean updateLikes(int user_id, int book_id);
+    public boolean updateDislikes(int user_id, int book_id);
 }

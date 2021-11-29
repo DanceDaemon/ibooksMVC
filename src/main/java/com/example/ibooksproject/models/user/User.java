@@ -1,5 +1,6 @@
 package com.example.ibooksproject.models.user;
 
+import com.example.ibooksproject.models.book.Book;
 import com.example.ibooksproject.models.comments.BookComments;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -26,6 +27,17 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private Set<BookComments> comments = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(name = "books_likes",
+            joinColumns = {
+                    @JoinColumn(name = "user_id", referencedColumnName = "id")
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(name = "book_id", referencedColumnName = "id")
+            }
+    )
+    private Set<Book> likes;
 
     public int getId() {
         return id;
@@ -103,4 +115,11 @@ public class User {
         return this.firstname + " " + this.lastname;
     }
 
+    public Set<Book> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(Set<Book> likes) {
+        this.likes = likes;
+    }
 }

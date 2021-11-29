@@ -21,5 +21,14 @@
         </div>
     </div>
 
+    <div>
+        <div th:each="book: ${user.likes}">
+            <p>Лайки:</p>
+            <div th:each="book : ${user.likes}">
+                <p th:utext="${book.name}"></p>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

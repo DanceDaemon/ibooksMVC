@@ -8,9 +8,11 @@ public interface UserDAO {
 
     public List<User> findAll();
 
-    public boolean createUser(User user);
+    public boolean createUser(User user) throws Exception;
 
     public User findByLogin(String login);
 
     public User findById(int id);
+
+    public User findByEmail(String email);
 }

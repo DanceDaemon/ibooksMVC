@@ -22,15 +22,22 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean createUser(User user) {
-        userDAO.createUser(user);
+        try {
+            userDAO.createUser(user);
+        } catch (Exception e) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        User user = userDAO.findByLogin(login);
-
-        return new CustomUserDetails(user);
+        try {
+            User user = userDAO.findByLogin(login);
+            return new CustomUserDetails(user);
+        } catch (UsernameNotFoundException e) {
+            return null;
+        }
     }
 
     @Override

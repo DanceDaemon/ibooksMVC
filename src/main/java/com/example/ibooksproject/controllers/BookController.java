@@ -4,6 +4,8 @@ package com.example.ibooksproject.controllers;
 import com.example.ibooksproject.models.book.Book;
 import com.example.ibooksproject.models.comments.BookComments;
 import com.example.ibooksproject.models.user.User;
+import com.example.ibooksproject.repository.BookRepository;
+import com.example.ibooksproject.repository.UserRepository;
 import com.example.ibooksproject.service.book.BookService;
 import com.example.ibooksproject.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.view.RedirectView;
+
+import java.util.Set;
 
 @Controller
 public class BookController {
@@ -43,13 +48,32 @@ public class BookController {
         return "booksTemplates/book";
     }
 
-    /*@PostMapping(value = "/book", params = {"id"})
-    public String addComment(@RequestParam(value = "id") int id, BookComments bookComments, Authentication authentication) {
-        bookComments.setBook(bookService.findById(id));
+    @GetMapping(value = "/like/book", params = {"id"})
+    public RedirectView likeBook(@RequestParam(value = "id") int id, Authentication authentication) {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         User user = userService.getUserByLogin(userDetails.getUsername());
-        bookComments.setUser(user);
+        Book book = bookService.findById(id);
 
-        return "redirect:main_page";
-    }*/
+        bookService.updateLikes(user.getId(), book.getId());
+
+        RedirectView redirectView = new RedirectView();
+        redirectView.setUrl("http://localhost:8080/book?id=" + book.getId());
+
+        return redirectView;
+    }
+
+    @GetMapping(value = "/dislike/book", params = {"id"})
+    public RedirectView dislikeBook(@RequestParam(value = "id") int id, Authentication authentication) {
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        User user = userService.getUserByLogin(userDetails.getUsername());
+        Book book = bookService.findById(id);
+
+        bookService.updateDislikes(user.getId(), book.getId());
+
+        RedirectView redirectView = new RedirectView();
+        redirectView.setUrl("http://localhost:8080/book?id=" + book.getId());
+
+        return redirectView;
+    }
+
 }
