@@ -30,7 +30,9 @@ public class BookController {
     private UserService userService;
 
     @GetMapping(value = "/books")
-    public String getAllBooks(Model model) {
+    public String getAllBooks(Model model, Authentication authentication) {
+        if (authentication != null) model.addAttribute("isAuth", true);
+        else model.addAttribute("isAuth", false);
         model.addAttribute("books", bookService.findAll());
         return "booksTemplates/books_list";
     }
@@ -43,6 +45,9 @@ public class BookController {
             User user = userService.getUserByLogin(userDetails.getUsername());
             model.addAttribute("currentUser", user);
             model.addAttribute("comment", new BookComments());
+            model.addAttribute("isAuth", true);
+        } else {
+            model.addAttribute("isAuth", false);
         }
 
         return "booksTemplates/book";

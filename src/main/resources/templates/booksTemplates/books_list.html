@@ -49,7 +49,7 @@
         </a>
       </span>
       <span style="display: block; margin: 15px;">Count of comments: <span th:utext="${book.comments.size()}"></span></span>
-      <span style="display: block; margin: 15px;" th:utext="${book.genre.name}"></span>
+      <a th:href="@{/genre(id = ${book.genre.id})}"><span style="display: block; margin: 15px;" th:utext="${book.genre.name}"></span></a>
     </section>
   </div>
 </body>

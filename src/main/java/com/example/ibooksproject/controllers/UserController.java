@@ -3,6 +3,7 @@ package com.example.ibooksproject.controllers;
 import com.example.ibooksproject.models.user.User;
 import com.example.ibooksproject.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +16,9 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/users")
-    public String getAllUsers(Model model) {
+    public String getAllUsers(Model model, Authentication authentication) {
+        if (authentication != null) model.addAttribute("isAuth", true);
+        else model.addAttribute("isAuth", false);
         model.addAttribute("users", userService.findAll());
         return "users";
     }
@@ -38,7 +41,9 @@ public class UserController {
     }
 
     @GetMapping("/user")
-    public String userProfile(Model model, @RequestParam(value = "id") int id) {
+    public String userProfile(Model model, @RequestParam(value = "id") int id, Authentication authentication) {
+        if (authentication != null) model.addAttribute("isAuth", true);
+        else model.addAttribute("isAuth", false);
         model.addAttribute("user", userService.getUserById(id));
 
         return "user";
