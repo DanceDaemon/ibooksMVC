@@ -5,13 +5,8 @@
     <title>Main page</title>
 </head>
 <body>
-
-    <div th:if="${currentUser != null}">
-        <p>Full name: <span th:utext="${currentUser.getFullName()}">Users full name</span></p>
-        <p>Login: <span th:utext="${currentUser.login}">Users login</span></p>
-    </div>
-
-    <div th:if="${currentUser == null}">
+<div>
+    <div th:if="${isAuth == false}">
         <div>
             <a th:href="@{/login}">
                 Log in
@@ -43,6 +38,6 @@
             Список жанров
         </a>
     </div>
-
+</div>
 </body>
 </html>

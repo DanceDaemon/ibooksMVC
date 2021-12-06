@@ -17,7 +17,7 @@ public class MainController {
     private UserService userService;
 
     @GetMapping("/")
-    public RedirectView mainPage(Model model, Authentication authentication) {
+    public RedirectView mainPageAuthorized(Model model, Authentication authentication) {
         if (authentication != null) {
 
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
@@ -32,7 +32,9 @@ public class MainController {
     }
 
     @GetMapping("main_page")
-    public String mainPage() {
+    public String mainPageNonAuthorized(Model model, Authentication authentication) {
+        if (authentication != null) model.addAttribute("isAuth", true);
+        else model.addAttribute("isAuth", false);
         return "main_page";
     }
 

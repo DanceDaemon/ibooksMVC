@@ -5,8 +5,42 @@
     <title>Main page</title>
 </head>
 <body>
+<div>
+    <div th:if="${isAuth == false}">
+        <div>
+            <a th:href="@{/login}">
+                Log in
+            </a>
+        </div>
+
+        <div>
+            <a th:href="@{/register}">
+                Sign up
+            </a>
+        </div>
+
+    </div>
 
     <div>
+        <a th:href="@{/books}">
+            Список книг
+        </a>
+    </div>
+
+    <div>
+        <a th:href="@{/authors}">
+            Спиок авторов
+        </a>
+    </div>
+
+    <div>
+        <a th:href="@{/genres}">
+            Список жанров
+        </a>
+    </div>
+</div>
+
+<div>
         <section th:each="genre : ${genres}">
             <a th:href="@{http://localhost:8080/genre(id=${genre.id})}" th:utext="${genre.name}">Genre</a>
         </section>

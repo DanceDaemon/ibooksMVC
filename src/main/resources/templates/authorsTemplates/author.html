@@ -6,7 +6,42 @@
 </head>
 
 <body>
+<div>
+    <div th:if="${isAuth == false}">
+        <div>
+            <a th:href="@{/login}">
+                Log in
+            </a>
+        </div>
+
+        <div>
+            <a th:href="@{/register}">
+                Sign up
+            </a>
+        </div>
+
+    </div>
+
     <div>
+        <a th:href="@{/books}">
+            Список книг
+        </a>
+    </div>
+
+    <div>
+        <a th:href="@{/authors}">
+            Спиок авторов
+        </a>
+    </div>
+
+    <div>
+        <a th:href="@{/genres}">
+            Список жанров
+        </a>
+    </div>
+</div>
+
+<div>
         <p th:utext="${author}">Author's name</p>
     </div>
 
