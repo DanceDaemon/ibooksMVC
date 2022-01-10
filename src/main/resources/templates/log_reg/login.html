@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset ="utf-8">
+    <meta http-equiv="Content-Type" content="text/html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Адаптивная форма регистрации и авторизации</title>
+    <!--<link rel="stylesheet" href="/static/css/login.css" th:href = "@{/static/css/login.css}" type="text/css"> -->
+    <!--  <script th:src="@{/script.js}" defer type="text/javascript"></script>  -->
+</head>
+
+<style>
+
+    @import url('https://fonts.google.com/css?family=Poppins:400,500&display=swap');
+
+
+    {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Poppins', sans-serif;;
+        margin: 0;
+
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background-color: #03a9f4;
+    }
+
+    body.active {
+        background-color: #03a94f;
+        transition: 0.5s;
+    }
+
+
+    .container {
+        width: 800px;
+        height: 500px;
+        padding: 40px 0;
+        position: relative;
+
+    }
+
+    .block {
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 5px 45px rgba(0, 0, 0, 0.2);
+
+        display: flex;
+        align-items: center;
+    }
+
+    .block_item{
+        width: 50%;
+    }
+
+    .block-item{
+        text-align: center;
+    }
+
+    .block-item_title {
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: #fff;
+        margin-bottom: 10px;
+
+    }
+
+    .block_item_btn {
+        border: none;
+        cursor: pointer;
+        padding: 10px 20px;
+        background-color: #fff;
+        color: #333;
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    .form-box {
+        background-color: #fff;
+        height: 100%;
+        width: 50%;
+        box-shadow: 0 5px 45px rgba(0, 0, 0, 0.25);
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+
+        transition: 0.5s ease-in-out;
+
+        display: flex;
+        align-items: center;
+
+        overflow: hidden;
+    }
+
+    .form-box.active {
+        left: 50%;
+    }
+
+    .form {
+        width: 100%;
+        padding: 50px;
+        font-size: 16px;
+
+        position: absolute;
+        transition: 0.5s;
+    }
+
+    .form_signin{
+        left: 0;
+        transition-delay: 0.25s;
+    }
+
+    .form_signup{
+        left: 100%;
+        transition-delay: 0s;
+    }
+
+    .form-box.active .form_signin {
+        left: -100%;
+        transition-delay: 0s;
+    }
+
+    .form-box.active .form_signup {
+        left: 0;
+        transition-delay: 0.25s;
+    }
+
+    .form__title {
+        font-size: 1.5rem;
+        font-weight: 500;
+        color: #333;
+
+    }
+
+    .form__input {
+        width: 70%;
+        padding: 10px;
+        border: solid 1px #333;
+        font-size: inherit;
+    }
+
+    .form__btn {
+        border: none;
+        cursor: pointer;
+        font-size: inherit;
+        background-color: #03a9f4;
+        color: #fff;
+        padding: 10px 50px;
+    }
+
+    .form__forgot {
+        color: #333;
+    }
+
+    .form__btn_signup{
+        background-color: #f43648;
+    }
+
+    @media (max-width: 992px) {
+        .container {
+            max-width: 400px;
+            height: 650px;
+            padding: 0;
+            margin: 0 20px
+        }
+
+        .block {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .block-item {
+            width: 100%;
+            padding: 30px 0;
+        }
+
+        .form-box {
+            width: 100%;
+            height: 500px;
+            box-shadow: none;
+
+            top: 0;
+        }
+
+        .form-box.active {
+            top: 150px;
+            left: 0;
+        }
+    }
+
+</style>
+
+<body>
+<article class="container">
+    <div class="block">
+
+        <section class="block_item block-item">
+            <h2 class="block-item_title ">У вас уже есть аккаунт?</h2>
+            <button class="block-item_btn signin-btn">Войти</button>
+        </section>
+        <section class="block_item block-item">
+            <h2 class="block-item_title">У вас нет аккаунта?</h2>
+            <button class="block-item_btn signup-btn">Зарегестрироваться</button>
+        </section>
+
+    </div>
+
+    <div class="form-box">
+
+        <form th:action = "@{/login}" class = "form form_signin" method="post">
+            <h3 class="form__title">Вход</h3>
+            <p>
+                <input type="text" class="form__input" placeholder="Логин" name="login">
+            </p>
+            <p>
+                <input type="password" class="form__input" placeholder="Пароль" name = "password">
+            </p>
+            <p>
+                <button class="form__btn">Войти</button>
+            </p>
+            <p>
+                <a href="#" class="form__forgot">Восстановить пароль</a>
+            </p>
+        </form>
+
+        <form th:action = "@{/register}" class = "form form_signup" th:object="${userForm}" method="post">
+            <h3 class="form__title">Регистрация</h3>
+            <p>
+                <input type="text" class="form__input" placeholder="Логин" th:field="*{login}">
+            </p>
+            <p>
+                <input type="email" class="form__input" placeholder="Email" th:field="*{email}">
+            </p>
+            <p>
+                <input type="password" class="form__input" placeholder="Пароль" th:field="*{password}">
+            </p>
+            <p>
+                <input type="password" class="form__input" placeholder="Подтвердите пароль">
+            </p>
+            <p>
+                <input type = "text" class="form__input" placeholder="Имя" th:field="*{firstname}">
+            </p>
+            <p>
+                <input type = "text" class="form__input" placeholder="Фамилия" th:field="*{lastname}">
+            </p>
+            <p>
+                <button class="form__btn form__btn_signup">Зарегестрироваться</button>
+            </p>
+
+        </form>
+
+
+
+    </div>
+
+</article>
+
+
+</body>
+
+<script>
+
+    const signInBtn = document.querySelector('.signin-btn');
+    const signUpBtn = document.querySelector('.signup-btn');
+    const formBox = document.querySelector('.form-box');
+    const body = document.body;
+
+    signUpBtn.addEventListener('click', function () {
+        formBox.classList.add('active');
+        body.classList.add('active');
+    });
+
+    signInBtn.addEventListener('click', function () {
+        formBox.classList.remove('active');
+        body.classList.remove('active');
+    });
+
+
+</script>
+
+</html>

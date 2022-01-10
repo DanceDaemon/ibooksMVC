@@ -40,6 +40,13 @@ public class UserController {
         return "redirect:login";
     }
 
+    @GetMapping("/login")
+    public String logAndReg(Model model) {
+        model.addAttribute("userForm", new User());
+
+        return "/log_reg/login";
+    }
+
     @GetMapping("/user")
     public String userProfile(Model model, @RequestParam(value = "id") int id, Authentication authentication) {
         if (authentication != null) model.addAttribute("isAuth", true);
