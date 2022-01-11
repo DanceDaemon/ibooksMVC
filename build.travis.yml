@@ -1,9 +1,0 @@
-language: java
-jdk:
-  - openjdk11
-before_install:
-  - echo Yj,tktdcrfz_Ghtvbz12 | docker login -u dancedaemon --password-stdin
-  - docker pull openjdk:11-jre-slim-sid
-script:
-  - ./mvnw clean install
-  - ./mvnw deploy jib:build -P deploy-docker
