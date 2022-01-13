@@ -24,11 +24,11 @@ public class MainController {
             User user = userService.getUserByLogin(userDetails.getUsername());
 
             RedirectView redirectView = new RedirectView();
-            redirectView.setUrl("http://localhost:8080/user?id=" + user.getId());
+            redirectView.setUrl("https://ibooks-heroku.herokuapp.com//user?id=" + user.getId());
             return redirectView;
         }
 
-        return new RedirectView("http://localhost:8080/main_page");
+        return new RedirectView("https://ibooks-heroku.herokuapp.com//main_page");
     }
 
     @GetMapping("main_page")
