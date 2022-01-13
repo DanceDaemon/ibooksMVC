@@ -44,7 +44,7 @@ public class UserController {
     public String logAndReg(Model model) {
         model.addAttribute("userForm", new User());
 
-        return "/log_reg/login";
+        return "login";
     }
 
     @GetMapping("/user")
