@@ -42,7 +42,7 @@
 
 <div>
         <section th:each="genre : ${genres}">
-            <a th:href="@{http://localhost:8080/genre(id=${genre.id})}" th:utext="${genre.name}">Genre</a>
+            <a th:href="@{/genre(id=${genre.id})}" th:utext="${genre.name}">Genre</a>
         </section>
     </div>
 
