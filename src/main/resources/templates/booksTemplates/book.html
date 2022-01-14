@@ -84,12 +84,12 @@
     <script>
         async function like() {
             const url = new URLSearchParams(window.location.search);
-            window.location.replace("http://localhost:8080/like/book?id=" + url.get('id').toString());
+            window.location.replace("https://ibooks-heroku.herokuapp.com/like/book?id=" + url.get('id').toString());
         }
 
         async function dislike() {
             const url = new URLSearchParams(window.location.search);
-            window.location.replace("http://localhost:8080/dislike/book?id=" + url.get('id').toString());
+            window.location.replace("https://ibooks-heroku.herokuapp.com/dislike/book?id=" + url.get('id').toString());
         }
     </script>
 </body>
