@@ -31,7 +31,7 @@ public class CommentController {
         bookCommentsService.saveComment(bookComments);
 
         RedirectView redirectView = new RedirectView();
-        redirectView.setUrl("http://localhost:8080/book?id=" + bookId);
+        redirectView.setUrl("https://ibooks-heroku.herokuapp.com/book?id=" + bookId);
 
         return redirectView;
 

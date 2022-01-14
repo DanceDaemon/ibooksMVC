@@ -62,7 +62,7 @@ public class BookController {
         bookService.updateLikes(user.getId(), book.getId());
 
         RedirectView redirectView = new RedirectView();
-        redirectView.setUrl("http://localhost:8080/book?id=" + book.getId());
+        redirectView.setUrl("https://ibooks-heroku.herokuapp.com/book?id=" + book.getId());
 
         return redirectView;
     }
@@ -76,7 +76,7 @@ public class BookController {
         bookService.updateDislikes(user.getId(), book.getId());
 
         RedirectView redirectView = new RedirectView();
-        redirectView.setUrl("http://localhost:8080/book?id=" + book.getId());
+        redirectView.setUrl("https://ibooks-heroku.herokuapp.com/book?id=" + book.getId());
 
         return redirectView;
     }
